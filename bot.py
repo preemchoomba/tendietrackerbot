@@ -14,9 +14,15 @@ async def on_ready():
 
 @bot.command()
 async def stock(ctx, ticker):
+    await ctx.send(stock_quote(ticker))
+
+#uses external libraries to fetch stock price.
+def stock_quote(ticker):
+
     stock = ticker
     tendie = yf.Ticker(stock)
-    
-    await ctx.send(tendie.history(period='5d'))
+    quote = tendie.history(period='5d')
+
+    return quote
 
 bot.run(DISCORD_TOKEN)
