@@ -1,6 +1,7 @@
 from discord.ext import commands
 from dotenv import load_dotenv
-import yfinance as yf
+import requests
+from bs4 import BeautifulSoup
 import os
 
 load_dotenv(verbose=True)
@@ -16,13 +17,17 @@ async def on_ready():
 async def stock(ctx, ticker):
     await ctx.send(stock_quote(ticker))
 
-#uses external libraries to fetch stock price.
+#scrapes CNN market stock pricing
 def stock_quote(ticker):
+    
+    url = "https://money.cnn.com/quote/quote.html?symb=" + ticker
+    
+    page = requests.get(url)
 
-    stock = ticker
-    tendie = yf.Ticker(stock)
-    quote = tendie.history(period='5d')
+    soup = BeautifulSoup(page.text, 'html.parser')
 
-    return quote
+    price = soup.find_all('span')[2].get_text()
+
+    return price 
 
 bot.run(DISCORD_TOKEN)
