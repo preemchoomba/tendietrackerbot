@@ -30,4 +30,10 @@ def stock_quote(ticker):
 
     return price 
 
+def crypto_quote(coin):
+
+
+
+    return price
+
 bot.run(DISCORD_TOKEN)
