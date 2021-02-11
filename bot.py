@@ -55,10 +55,13 @@ def crypto_quote(query):
             return "No pricing information for that pair."
 
         return price
+
     except IndexError:
         print("Coin or currency pair price information doesn't exist. Use <cointicker>:<currency> ex. BTC:USD")
+
     except KeyError:
         print("Coin or currency pair price information doesn't exist. Use <cointicker>:<currency> ex. BTC:USD")
+        
     except Exception as e:
         print(repr(e))
 
