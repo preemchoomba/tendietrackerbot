@@ -23,21 +23,23 @@ async def on_ready():
 async def stock(ctx, ticker):
     id = ctx.guild.id
     name = ctx.guild.name
-    print(str(id) + ":" + name)
+    print("stock:" + ticker + ":" + name + ":" + str(id))
     await ctx.channel.send(stock_quote(ticker))
 
 @bot.command()
 async def crypto(ctx, pair):
     id = ctx.guild.id
     name = ctx.guild.name
-    print(str(id) + ":" + name)
+    print("crypto:" + pair + ":" + name + ":" + str(id))
     await ctx.channel.send(crypto_quote(pair))
 
 
-#scrapes CNN market stock pricing
+# scrapes CNN market stock pricing
 def stock_quote(ticker):
     
-    url = "https://money.cnn.com/quote/quote.html?symb=" + ticker
+    source = "https://money.cnn.com/quote/quote.html?symb="
+
+    url = source + ticker
     
     page = requests.get(url)
 
