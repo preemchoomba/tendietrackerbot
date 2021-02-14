@@ -5,9 +5,7 @@ import datetime
 import discord
 import requests
 from bs4 import BeautifulSoup
-from discord import message
 from discord.ext import commands
-from discord.guild import Guild
 from dotenv import load_dotenv
 
 # use environment file for token key
